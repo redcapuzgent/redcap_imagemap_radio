@@ -1,0 +1,18 @@
+{
+  "name": "Custom Imagemap with radiobuttons",
+  "namespace": "uzgent\\ImageMapClassRadio",
+  "description": "This is an imagemap implementation that allows users to define their own images and corresponding imagemaps linked with radiobuttons.",
+  "authors": [
+    {
+      "name": "Lieven Vaneeckhaute",
+      "email": "lieven.vaneeckhaute@uzgent.be",
+      "institution": "University Hospital Ghent"
+    }
+  ],
+  "documentation" : "howto.html",
+  "permissions": [
+    "redcap_data_entry_form",
+    "redcap_survey_page"
+  ]
+
+}
