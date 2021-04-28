@@ -96,7 +96,7 @@ imagemapfunctions.updateFunctionForRadio = function(selectedCode, radiobuttonNam
     var updatedElement = false;
         for (var i = 0; i < document.getElementsByTagName('input').length; i++) {
             var el = document.getElementsByTagName('input').item(i);
-            if (el.hasAttribute("name") && el.getAttribute("name").startsWith(radiobuttonName) && el.value === selectedCode ) {
+            if (el.hasAttribute("name") && el.getAttribute("name") === (radiobuttonName + "___radio") && el.value === selectedCode ) {
                     updatedElement = true;
                     el.click();
             }
@@ -112,7 +112,7 @@ imagemapfunctions.getCheckedElements = function (radiobuttonName) {
     var checkedElements = [];
     for (var i = 0; i < document.getElementsByTagName('input').length; i++) {
         var el = document.getElementsByTagName('input').item(i);
-        if (el.hasAttribute("name") && el.getAttribute("name").startsWith(radiobuttonName)) {
+        if (el.hasAttribute("name") && el.getAttribute("name") === (radiobuttonName + "___radio")) {
             if (el.checked) {
                 var code = el.value;
                 checkedElements.push(code);
