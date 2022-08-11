@@ -1,7 +1,7 @@
 /**
  * This uses an imageId and an imagemap id.
  * It will render a canvas over the imagemap.
- * When something has clicked the underlying imagemap is used to render a figure with fillColors over the image.
+ * When something is clicked the underlying imagemap is used to render a figure with fillColors over the image.
  * The imageareas are augmented with a "toggled" attribute.
  *
  * @param imageIdL Id of the image.
@@ -11,7 +11,7 @@
  * @returns {{}}
  * @constructor
  */
-function ImageMapAug(imageIdL, mapIdL, updateFunctionL, fillColor) {
+function ImageMapAugRadio(imageIdL, mapIdL, updateFunctionL, fillColor) {
 
     const toggleAttribute = "toggled";
 
@@ -99,13 +99,13 @@ function ImageMapAug(imageIdL, mapIdL, updateFunctionL, fillColor) {
                         canvas.style.top = position.y + "px";
                         canvas.width = image.width;
                         canvas.height = image.height;
-                        renderMap.call(canvas.imageMapAug);
+                        renderMap.call(canvas.imageMapAugRadio);
                     }
                 }
 
             }, checkTime);
             canvas.zIndex = 2000;
-            canvas.imageMapAug = this;
+            canvas.imageMapAugRadio = this;
         }
 
         var imageId = this.imageId;
@@ -140,9 +140,9 @@ function ImageMapAug(imageIdL, mapIdL, updateFunctionL, fillColor) {
     /**
      * Toggle an area.
      * @param area
-     * @param imageMapAug
+     * @param imageMapAugRadio
      */
-    function toggle(area, imageMapAug) {
+    function toggle(area, imageMapAugRadio) {
         var newValue = 1;
         if (area.hasAttribute(toggleAttribute)) {
             var val = area.getAttribute(toggleAttribute);
@@ -150,9 +150,9 @@ function ImageMapAug(imageIdL, mapIdL, updateFunctionL, fillColor) {
         }
         area.setAttribute(toggleAttribute, newValue);
         console.info("Toggled " + area + " to " + newValue);
-        imageMapAug.renderMap();
-        if (imageMapAug.updateFunction != null) {
-            imageMapAug.updateFunction(imageMapAug.getDictionary());
+        imageMapAugRadio.renderMap();
+        if (imageMapAugRadio.updateFunction != null) {
+            imageMapAugRadio.updateFunction(imageMapAugRadio.getDictionary());
         }
     }
 
@@ -176,13 +176,13 @@ function ImageMapAug(imageIdL, mapIdL, updateFunctionL, fillColor) {
         }
         var canvas = document.elementFromPoint(event.x - pageXcorrection, event.y - pageYcorrection);
         
-        var mapId = canvas.imageMapAug.mapId;
+        var mapId = canvas.imageMapAugRadio.mapId;
         var canvasPos = getPos(canvas);
         var area = findAreaByMapId(mapId, event.pageX - canvasPos.x, event.pageY - canvasPos.y, canvas);
         if (area != null)
         {
             untoggleAll(mapId);
-            toggle(area, canvas.imageMapAug);            
+            toggle(area, canvas.imageMapAugRadio);            
         }
     }
 
