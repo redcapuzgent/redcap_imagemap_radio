@@ -143,14 +143,14 @@ imagemapfunctions.registerImageMap = function (imageId, mapId, originalRadioButt
     switch ('RENDERMODE') {
         case 'afterRender':
             JSMONAME.afterRender(function () {
-                $('#' + imageId + 'canvas').remove();
+                if (document.getElementById(imageId+'canvas') != null) document.getElementById(imageId+'canvas').remove();
                 aug.populateAreas(imagemapfunctions.getCheckedElements(radiobuttonName));
                 aug.renderMap();
             });
             break;
         case 'onLangChanged':
             REDCap.MultiLanguage.onLangChanged(function () {
-                $('#' + imageId + 'canvas').remove();
+                if (document.getElementById(imageId+'canvas') != null) document.getElementById(imageId+'canvas').remove();
                 aug.populateAreas(imagemapfunctions.getCheckedElements(radiobuttonName));
                 aug.renderMap();
             });
